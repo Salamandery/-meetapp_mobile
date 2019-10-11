@@ -5,14 +5,12 @@ import {
 } from 'react-native';
 
 import Routes from '~/Route';
-const App: () => React$Node = () => {
+const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1}}>
+        <StatusBar backgroundColor="#391326" barStyle="light-content" />
         <Routes />
       </SafeAreaView>
-    </>
   );
 };
 
