@@ -1,49 +1,42 @@
-import {
-    TouchableOpacity,
-    Text,
-    TextInput,
-    View,
-    Button
-} from 'react-native';
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Container = styled(View)`
+import Input from '~/Components/Input';
+import Button from '~/Components/Button';
+
+export const Container = styled.KeyboardAvoidingView.attrs({
+    enabled: Platform.OS === 'ios',
+    behavior: 'padding'
+})`
     flex: 1;
     align-items: center;
     justify-content: center;
+    padding: 0 30px;
 `;
-export const Input = styled(TextInput)`
-    color: #999;
-    font-size: 20px;
-    background: #260d1a;
+export const Form = styled.View`
     align-self: stretch;
-    padding: 10px 10px;
-    margin: 10px 40px;
+    margin-top: 50px;
 `;
-export const Label = styled(Text)`
+export const FormInput = styled(Input)`
+    margin-bottom: 10px;
+`;
+export const Label = styled.Text`
     font-family: sans-serif;
     font-size: 68px;
     margin-bottom: 20px;
     color: #99003d;
     font-weight: bold;
 `;
-export const Cadastrar = styled(TouchableOpacity)`
-    align-self: stretch;
+export const Cadastrar = styled(Button)`
     background: #99003d;
-    padding: 10px 10px;
-    margin: 5px 40px;
+    margin-top: 5px;
 `;
-export const Link = styled(TouchableOpacity)`
-    margin-top: 2px;
+export const Link = styled.TouchableOpacity`
+    margin-top: 20px;
 `;
-export const New = styled(Text)`
-    font-size: 18px;
-    color: #999;
-    font-weight: bold;
-`;
-export const LabelButton = styled(Text)`
-    font-size: 22px;
-    color: #999;
+export const Back = styled.Text`
     text-align: center;
+    font-size: 16px;
+    color: #fff;
     font-weight: bold;
 `;

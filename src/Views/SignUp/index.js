@@ -1,36 +1,35 @@
 import React, {
     useState,
-    useEffect
+    useRef
 } from 'react';
-import api from '../../Services/api';
+import {
+    useDispatch
+} from 'react-redux';
 import {
     Label,
-    Input,
     Container,
-    New,
+    Back,
     Link,
     Cadastrar,
-    LabelButton
+    FormInput,
+    Form
 } from './style';
+import { signUpRequest } from '~/Services/store/auth/action';
 import Background from '~/Components/Background';
 
 export default function SignUp({ navigation }) {
+    const dispatch = useDispatch();
+    const emailRef = useRef();
+    const passwordRef = useRef();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
     async function handlerSignUp() {
         try {
-            const res = await api.post('/users', {
-                name,
-                email,
-                password
-            });
-            
-            setTimeout(()=>{
-                navigation.navigate('SignIn');
-            }, 1000);
+            dispatch(signUpRequest(name, email, password));
 
+            navigation.navigate('SignIn');
         } catch (err) {
             console.log(err);
         }
@@ -43,34 +42,40 @@ export default function SignUp({ navigation }) {
         <Background>
             <Container>
                 <Label>M</Label>
-                <Input placeholder="Nome completo"
-                       autoCapitalize={false}
-                       autoCorrect={false}
-                       placeholderTextColor="#999"
-                       value={name}
-                       onChangeText={setName}
-                />
-                <Input placeholder="Digite seu e-mail"
-                       autoCapitalize={false}
-                       autoCorrect={false}
-                       placeholderTextColor="#999"
-                       value={email}
-                       onChangeText={setEmail}
-                />
-                <Input placeholder="Sua senha secreta"
-                       autoCapitalize={false}
-                       autoCorrect={false}
-                       secureTextEntry={true}
-                       placeholderTextColor="#999"
-                       value={password}
-                       onChangeText={setPassword}
-                />
-                <Cadastrar onPress={handlerSignUp}>
-                    <LabelButton>CADASTRAR</LabelButton>
-                </Cadastrar>
-                <Link onPress={handlerSignIn}>
-                    <New>Já tenho uma conta.</New>
-                </Link>
+                <Form>
+                    <FormInput placeholder="Nome Completo"
+                        icon="person-outline"
+                        value={name}
+                        onChangeText={setName}
+                        ref={emailRef}
+                        returnKeyType="next"
+                        onSubmitEditing={()=>emailRef.current.focus()}
+                    />
+                    <FormInput placeholder="Digite seu e-mail"
+                        icon="mail-outline"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        value={email}
+                        onChangeText={setEmail}
+                        returnKeyType="next"
+                        ref={emailRef}
+                        onSubmitEditing={()=>passwordRef.current.focus()}
+                    />
+                    <FormInput placeholder="Digite sua senha"
+                        icon="lock-outline"
+                        secureTextEntry={true}
+                        value={password}
+                        onChangeText={setPassword}
+                        ref={passwordRef}
+                        returnKeyType="send"
+                        onSubmitEditing={handlerSignUp}
+                    />
+                    <Cadastrar onPress={handlerSignUp}>CADASTRAR</Cadastrar>
+                    <Link onPress={handlerSignUp}>
+                        <Back onPress={handlerSignIn}>Já tenho conta</Back>
+                    </Link>
+                </Form>
             </Container>
         </Background>
     );

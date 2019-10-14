@@ -1,34 +1,32 @@
 import React, {
     useState,
-    useEffect
+    useEffect,
+    useRef
 } from 'react';
-import api from '../../Services/api';
+import {
+    useDispatch
+} from 'react-redux';
 import {
     Label,
-    Input,
     Container,
     New,
     Link,
     Entrar,
-    LabelButton
+    FormInput,
+    Form
 } from './style';
+import { signInRequest } from '~/Services/store/auth/action';
 import Background from '~/Components/Background';
 
 export default function SignIn({ navigation }) {
+    const dispatch = useDispatch();
+    const passwordRef = useRef();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     async function handlerSignIn() {
         try {
-            const res = await api.post('/sessions', {
-                email,
-                password
-            });
-            
-            if (res.data) {
-                
-            }
-
+            dispatch(signInRequest(email, password));
         } catch (err) {
             console.log(err);
         }
@@ -41,27 +39,31 @@ export default function SignIn({ navigation }) {
         <Background>
             <Container>
                 <Label>M</Label>
-                <Input placeholder="Digite seu e-mail"
-                       autoCapitalize={false}
-                       autoCorrect={false}
-                       placeholderTextColor="#999"
-                       value={email}
-                       onChangeText={setEmail}
-                />
-                <Input placeholder="Digite sua senha"
-                       autoCapitalize={false}
-                       autoCorrect={false}
-                       secureTextEntry={true}
-                       placeholderTextColor="#999"
-                       value={password}
-                       onChangeText={setPassword}
-                />
-                <Entrar onPress={handlerSignIn}>
-                    <LabelButton>ENTRAR</LabelButton>
-                </Entrar>
-                <Link onPress={handlerSignUp}>
-                    <New>Criar conta grátis</New>
-                </Link>
+                <Form>
+                    <FormInput placeholder="Digite seu e-mail"
+                        icon="mail-outline"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        value={email}
+                        onChangeText={setEmail}
+                        returnKeyType="next"
+                        onSubmitEditing={()=>passwordRef.current.focus()}
+                    />
+                    <FormInput placeholder="Digite sua senha"
+                        icon="lock-outline"
+                        secureTextEntry={true}
+                        value={password}
+                        onChangeText={setPassword}
+                        ref={passwordRef}
+                        returnKeyType="send"
+                        onSubmitEditing={handlerSignIn}
+                    />
+                    <Entrar onPress={handlerSignIn}>ENTRAR</Entrar>
+                    <Link onPress={handlerSignUp}>
+                        <New>Criar conta grátis</New>
+                    </Link>
+                </Form>
             </Container>
         </Background>
     );
