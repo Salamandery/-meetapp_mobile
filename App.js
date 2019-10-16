@@ -7,7 +7,6 @@ import {
 } from 'react-redux';
 import {
   SafeAreaView,
-  StatusBar,
 } from 'react-native';
 import './src/Config/reactotronConfig';
 import App from '~/Config/App';
@@ -17,7 +16,6 @@ const Index = () => {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
       <SafeAreaView style={{flex: 1}}>
-        <StatusBar backgroundColor="#391326" barStyle="light-content" />
         <App />
       </SafeAreaView>
       </PersistGate>
