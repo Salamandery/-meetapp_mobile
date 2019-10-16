@@ -5,6 +5,7 @@ import Button from '../Button';
 
 export const Container = styled.View`
     flex: 1;
+    margin-top: 15px;
     padding: 0 20px;
 
     flex-direction: row;
@@ -17,7 +18,7 @@ export const Subscribe = styled(Button)`
     background: #99003d;
     justify-content: center;
     align-items: center;
-    margin: 20px 15px;
+    margin: 15px;
 `;
 
 export const Card = styled.View`
