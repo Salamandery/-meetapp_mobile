@@ -16,6 +16,7 @@
 
 - Na tela de dashboard ao clicar em cima do "Dia Mes" aparecerá um picker para selecionar o mês desejado para listar os eventos;
 - Ao clicar nas arrows ao lado do "Dia Mês" irá avançar a página dos eventos, máximo de 10 eventos por página;
+- Comunicação com servidor via Axios, não esquecer de mudar o IP do servidor;
 
 ### Login
 ![CART](assets/signin.jpeg)

@@ -16,7 +16,7 @@ function Subscribe() {
 
     useEffect(()=>{
         loadMeetups();
-    }, []);
+    }, [meetups]);
     async function loadMeetups() {
         const res = await api.get(`/subscribe`);
 
