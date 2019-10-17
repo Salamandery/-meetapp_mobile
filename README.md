@@ -7,14 +7,14 @@
 - Tela de edição do Perfil;
 
 ### Login
-![CART](assets/signin.PNG)
+![CART](assets/signin.jpeg)
 ### Cadastro
-![CART](assets/signup.PNG)
+![CART](assets/signup.jpeg)
 ### Dashboard
-![CART](assets/meetups.PNG)
+![CART](assets/meetups.jpeg)
 ### Inscrições
-![CART](assets/subscribes.PNG)
+![CART](assets/subscribes.jpeg)
 ### Perfil
-![CART](assets/perfil.PNG)
+![CART](assets/perfil.jpeg)
 
 ##### Apenas ANDROID
