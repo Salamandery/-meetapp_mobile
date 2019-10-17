@@ -1,14 +1,13 @@
 import React, {
-    useState,
     useMemo
 } from 'react';
 import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { DatePickerAndroid } from 'react-native';
-import { DataButton, Container, Text, } from './styles';
+import { DataButton, Container, Text, PageButton } from './styles';
 
-function DateTimeInput({ date, onChange }) {
+function DateTimeInput({ date, onChange, prevPage, nextPage }) {
     const dateFormatted = useMemo(()=>{
         let dt = format(date, "dd 'de' MMMM", { locale: pt });
         dt = dt.split(' ')[0] + " " + dt.split(' ')[1]+ " " + dt.charAt(6).toUpperCase() + dt.slice(7);
@@ -29,11 +28,15 @@ function DateTimeInput({ date, onChange }) {
     }
     return (
         <Container>
-            <DataButton onPress={handlerOpenPicker}>
+            <PageButton onPress={prevPage}>
                 <Icon name="navigate-before" size={20} color="#fff" />
+            </PageButton>
+            <DataButton onPress={handlerOpenPicker}>
                 <Text>{dateFormatted}</Text>
-                <Icon name="navigate-next" size={20} color="#fff" />
             </DataButton>
+            <PageButton onPress={nextPage}>
+                <Icon name="navigate-next" size={20} color="#fff" />
+            </PageButton>
         </Container>
     )
 }

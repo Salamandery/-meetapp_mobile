@@ -15,19 +15,20 @@ function Subscribe() {
     const [meetups, setMeetups] = useState([]);
 
     useEffect(()=>{
-        async function loadMeetups() {
-            const res = await api.get(`/subscribe`);
-
-            setMeetups(res.data);
-        }
-
         loadMeetups();
     }, []);
+    async function loadMeetups() {
+        const res = await api.get(`/subscribe`);
 
+        setMeetups(res.data);
+    }
     async function handlerPress(id) {
         try {
             await api.delete(`/subscribe/${id}`);
-            Alert.alert("Cadastro realizado", "Sua inscrição foi realizada com sucesso.");
+            Alert.alert("Cancelamento realizado", "Seu cancelamento foi realizada com sucesso.");
+            setTimeout(()=>{
+                loadMeetups();
+            }, 1000);
         } catch (err) {
             Alert.alert("Erro ao se inscrever", "Houve um erro ao se inscrever, tente novamente mais tarde.");
         }

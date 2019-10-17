@@ -15,16 +15,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 function Dashboard() {
     const [date, setDate] = useState(new Date());
     const [meetups, setMeetups] = useState([]);
+    const [page, setPage] = useState(1);
 
     useEffect(()=>{
-        async function loadMeetups() {
-            const res = await api.get(`/schedules?page=1&date=${getDate()}`);
-
-            setMeetups(res.data);
-        }
-
         loadMeetups();
-    }, [date]);
+    }, [date, page]);
+    async function loadMeetups() {
+        const res = await api.get(`/schedules?page=${page}&date=${getDate()}`);
+
+        setMeetups(res.data);
+    }
     function getDate() {
         const dt = `${date.getFullYear()}-${date.getMonth()<10?'0'+date.getMonth(): date.getMonth()}-${date.getDate()}`;
         return dt;
@@ -33,9 +33,24 @@ function Dashboard() {
         try {
             await api.post(`/subscribe/${id}`);
             Alert.alert("Cadastro realizado", "Sua inscrição foi realizada com sucesso.");
+            setTimeout(()=>{
+                loadMeetups();
+            }, 1000);
         } catch (err) {
             Alert.alert("Erro ao se inscrever", `Houve um erro ao se inscrever, tente novamente mais tarde. \n\n${err}`);
         }
+    }
+    function nextPage() {
+        setPage(page + 1);
+
+        loadMeetups();
+    }
+    function prevPage() {
+        if (page === 1) return;
+
+        setPage(page - 1);
+
+        loadMeetups();
     }
     return (
         <Background>
@@ -43,6 +58,8 @@ function Dashboard() {
             <DateTimeInput 
                 date={date}
                 onChange={setDate}
+                prevPage={prevPage}
+                nextPage={nextPage}
             />
             <FlatList 
                 func={handlerPress} 

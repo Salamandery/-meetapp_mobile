@@ -4,8 +4,6 @@ import { FlatList } from 'react-native';
 import Button from '../Button';
 
 export const Container = styled.View`
-    flex: 1;
-    margin-top: 15px;
     padding: 0 20px;
 
     flex-direction: row;
@@ -29,12 +27,12 @@ export const Card = styled.View`
 `;
 
 export const Info = styled.View`
-    flex: 1;
+    align-self: stretch;
     padding: 0 15px;
 `;
 
 export const Group = styled.View`
-    flex: 1;
+    align-self: stretch;
     margin-top: 2px;
     padding: 5px 10px;
     flex-direction: row;
@@ -42,6 +40,7 @@ export const Group = styled.View`
 `;
 
 export const Title = styled.Text`
+    align-self: stretch;
     color: #000;
     padding: 0px 10px 5px;
     font-weight: bold;
@@ -49,13 +48,14 @@ export const Title = styled.Text`
 `;
 
 export const TextInfo = styled.Text`
+    align-self: stretch;
     color: #999;
     font-size: 14px;
     margin-left: 5px;
 `;
 
 export const Banner = styled.Image`
-    flex: 1;
+    align-self: stretch;
     height: 160px;
     background: #e1e1e1;
     border-top-left-radius: 4px;
@@ -64,5 +64,5 @@ export const Banner = styled.Image`
 `;
 
 export const FList = styled(FlatList)`
-    flex: 1;
+    margin-top: 15px;
 `;

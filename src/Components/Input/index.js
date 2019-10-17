@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import ProtoTypes from 'prop-types';
 
 import { Container, TInput } from './style';
 
@@ -12,15 +11,5 @@ function Input({ style, icon, ...rest }, ref) {
         </Container>
     );
 }
-
-Input.propTypes = {
-    icon: ProtoTypes.string, 
-    style: ProtoTypes.oneOfType([ProtoTypes.object, ProtoTypes.array]),
-}
-
-Input.defaultProps = {
-    icon: null,
-    style: {},
-};
 
 export default forwardRef(Input);

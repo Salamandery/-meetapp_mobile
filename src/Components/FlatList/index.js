@@ -20,7 +20,7 @@ function FlatList({ func, style, item, titleButton, icon, ...rest }) {
         return (
             <Container style={style}>
                 <Card>
-                    <Banner source={{uri: item.banner.url}}/>
+                    <Banner source={{uri: `${item.banner.url}`}}/>
                     <Info>
                         <Title>{item.name}</Title>
                         <Group>
@@ -49,7 +49,6 @@ function FlatList({ func, style, item, titleButton, icon, ...rest }) {
             data={item}
             keyExtractor={(item, idx) => idx.toString()}
             renderItem={RenderItem}
-            onEndReachedThreshold={.1}
         />
     );
 }
