@@ -4,7 +4,6 @@
     <img src="https://img.shields.io/badge/version-0.0.1-blue.svg" />
     <img src="https://img.shields.io/badge/platform-Android%20%7C%20iOS-lightgrey" />
     <img src="https://img.shields.io/badge/license-MIT-green.svg" />
-    <img src="https://img.shields.io/badge/Feito%20com%20%E2%9D%A4%20por-Rocketseat-blueviolet" />
   </p>
   <blockquote>Aplicativo mobile para gerenciamento de eventos (Meetups), desenvolvido em React Native.</blockquote>
 </div>
